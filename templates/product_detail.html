@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ product.name }}</h1>
+{% if product.image_path %}
+    <img src="{{ url_for('static', filename='images/' + product.image_path) }}" class="product-detail-img mb-3" alt="{{ product.name }}">
+{% endif %}
+<p>{{ product.description }}</p>
+<p><strong>KSh {{ "%.2f"|format(product.price) }}</strong></p>
+
+<div class="d-flex gap-2 mb-4">
+    <form method="post" action="{{ url_for('add_to_cart', product_id=product.id) }}" class="d-inline">
+        <button type="submit" class="btn btn-success btn-lg">
+            <i class="fas fa-cart-plus"></i> Add to Cart
+        </button>
+    </form>
+    <a href="{{ url_for('cart') }}" class="btn btn-primary btn-lg">
+        <i class="fas fa-shopping-cart"></i> View Cart
+    </a>
+</div>
+
+<form method="post" action="{{ url_for('checkout') }}">
+    <input type="hidden" name="product_id" value="{{ product.id }}">
+    <div class="form-group">
+        <label for="phone">Phone number (MPESA)</label>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="2547XXXXXXXX" required>
+    </div>
+    <button type="submit" class="btn btn-success">Buy Now with M-Pesa</button>
+</form>
+{% endblock %}

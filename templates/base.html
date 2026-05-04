@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenny Enterprise</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+{% include 'navbar.html' %}
+
+<div class="container mt-4">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</div>
+
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script>
+// Simple cart badge demo - in real app, this would be dynamic
+document.addEventListener('DOMContentLoaded', function() {
+    // Update cart badge on page load
+    updateCartBadge();
+    
+    // Handle add to cart forms
+    const addToCartForms = document.querySelectorAll('form[action*="add_to_cart"]');
+    addToCartForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            // Let the form submit normally, but update badge after
+            setTimeout(updateCartBadge, 100);
+        });
+    });
+
+    // Search form enhancement
+    const searchForm = document.querySelector('form.d-flex');
+    if (searchForm) {
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = this.querySelector('input').value.trim();
+            if (query) {
+                alert('Searching for: ' + query);
+                // In real app, redirect to search results
+            }
+        });
+    }
+});
+
+function updateCartBadge() {
+    // In a real app, this would fetch cart count from server
+    // For now, we'll just update based on session (which requires page reload)
+    const badge = document.getElementById('cartBadge');
+    if (badge) {
+        // This will be updated when page reloads after adding to cart
+        // In production, use AJAX to update without reload
+    }
+}
+</script>
+</body>
+</html>

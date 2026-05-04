@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Kenny Enterprise" height="40" class="me-2" onerror="this.style.display='none'">
+            <span class="fw-bold text-primary">Kenny Enterprise</span>
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <!-- Categories Dropdown -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-semibold" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bars me-1"></i>Categories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        <li><a class="dropdown-item" href="#">Electronics</a></li>
+                        <li><a class="dropdown-item" href="#">Fashion</a></li>
+                        <li><a class="dropdown-item" href="#">Home & Office</a></li>
+                        <li><a class="dropdown-item" href="#">Health & Beauty</a></li>
+                        <li><a class="dropdown-item" href="#">Sports</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item fw-bold" href="#">All Categories</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Search Bar -->
+            <form class="d-flex flex-grow-1 mx-3" style="max-width: 500px;">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Search products..." aria-label="Search">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Right Side Items -->
+            <ul class="navbar-nav">
+                <!-- Account -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if session.get('username') %}
+                            <i class="fas fa-user-circle me-1"></i>{{ session.get('username') }}
+                        {% else %}
+                            <i class="fas fa-user me-1"></i>Account
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                        {% if session.get('username') %}
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-shopping-bag me-2"></i>My Orders</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt me-2"></i>Login</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('register') }}"><i class="fas fa-user-plus me-2"></i>Register</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+
+                <!-- Help -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-question-circle me-1"></i>Help
+                    </a>
+                </li>
+
+                <!-- Cart -->
+                <li class="nav-item">
+                    <a class="nav-link position-relative" href="{{ url_for('cart') }}">
+                        <i class="fas fa-shopping-cart fa-lg"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartBadge">
+                            {{ session.get('cart', {}) | length if session.get('cart') else 0 }}
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

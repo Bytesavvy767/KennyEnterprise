@@ -1,0 +1,120 @@
+/* Custom styles */
+body {
+    padding-top: 80px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+/* Navbar Styles */
+.navbar {
+    border-bottom: 2px solid #f8f9fa;
+    background: linear-gradient(to right, #ffffff, #f8f9fa);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #007bff !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #0056b3 !important;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #495057 !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #007bff !important;
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.input-group .form-control {
+    border-right: none;
+    border-radius: 25px 0 0 25px;
+}
+
+.input-group .btn {
+    border-left: none;
+    border-radius: 0 25px 25px 0;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    border: 1px solid #007bff;
+}
+
+.input-group .btn:hover {
+    background: linear-gradient(45deg, #0056b3, #004085);
+}
+
+#cartBadge {
+    font-size: 0.75rem;
+    padding: 0.25em 0.5em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        margin-top: 10px;
+        border-top: 1px solid #dee2e6;
+        padding-top: 10px;
+    }
+
+    .input-group {
+        margin-bottom: 10px;
+    }
+}
+
+/* Product Image Styling */
+.card-img-top {
+    max-height: 250px;
+    object-fit: contain;
+    width: 100%;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+.product-detail-img {
+    max-width: 500px;
+    max-height: 500px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Product Card Hover Effects */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.product-card .card-img-top {
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .card-img-top {
+    transform: scale(1.1);
+}
